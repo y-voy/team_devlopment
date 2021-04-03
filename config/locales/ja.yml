@@ -214,6 +214,7 @@ ja:
       does_not_exist_email: 'メールアドレスが存在しません。アカウントを作成してください。'
       cannot_delete_the_leader: 'リーダーは削除できません。'
       cannot_delete_only_a_member: 'このユーザーはこのチームにしか所属していないため、削除できません。'
+      cannot_delete_not_owner_or_self: '削除権限がありません。'
       delete_member: 'メンバーを削除しました。'
       cannot_delete_member_4_some_reason: 'なんらかの原因で、削除できませんでした。'
       failed_to_post: '投稿できませんでした...'
@@ -253,6 +254,7 @@ ja:
       edit_profile: 'プロフィールを編集'
       team_you_belong_to: '所属しているチーム'
       posted_articles: '投稿した記事一覧'
+      edit_team_not_by_owner: 'オーナー以外は編集できません'
     button:
       submit: '投稿'
       edit: '編集'
