@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: %i[show edit update destroy]
+  before_action :set_team, only: %i[show edit update destroy move]
 
   def index
     @teams = Team.all
@@ -45,6 +45,22 @@ class TeamsController < ApplicationController
 
   def dashboard
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first
+  end
+
+  def move
+    user = User.find(params[:user_id])
+    if @team.owner == user
+      redirect_to team_path, notice: I18n.t('views.messages.move_team_leader_to_leader_now')
+    else
+      @team.owner = user
+      if @team.save
+        TeamMailer.team_mail(user.email).deliver
+        redirect_to team_path, notice: I18n.t('views.messages.move_team_leader')
+      else
+        flash.now[:error] = I18n.t('views.messages.failed_to_save_move_team_leader')
+        redirect_to team_path
+      end
+    end
   end
 
   private
